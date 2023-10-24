@@ -1,0 +1,60 @@
+
+        <ng-container >
+            <div class="form-group"> 
+                <label for="pid" > Product Id </label>
+                <input type="text"  class="form-control" id="pid" value="{{b1?.product?.product_id}}" name="pid" disabled/>
+           </div>
+        </ng-container>
+    
+        <ng-container >
+    
+        <div class="form-group" > 
+            <label for="pname" > Product Name </label>
+            <input type="text"  class="form-control" id="pname"  value="{{b1?.product?.product_nm}}" name="pname" disabled/>
+        
+        </div>
+        </ng-container>
+    
+        <ng-container >
+            <div class="form-group" > 
+                <label for="pcat" > Product Category </label>
+                <input type="text"  class="form-control" id="pcat"  value="{{b1?.product?.category}}" name="pcat" disabled/>
+            
+            </div>
+        </ng-container>
+    
+        <ng-container >
+            <div class="form-group" > 
+                <label for="scat" > Product SubCategory </label>
+                <input type="text"  class="form-control" id="scat"  value="{{b1?.product?.subcategory}}" name="scat" disabled/>
+            
+            </div>
+        </ng-container>
+        
+    
+        <ng-container >
+            <div class="form-group" > 
+                <label for="pdesc" > Product description </label>
+                <input type="text"  class="form-control" id="pdesc" value="{{b1?.product?.product_desc}}" name="pdesc" disabled/>
+            
+            </div>
+        </ng-container>
+    
+        <ng-container >
+            <div class="form-group" > 
+                <label for="oldprice" > Old Price </label>
+                <input type="text"  class="form-control" id="oldprice" value="{{b1?.unit_price}}" name="oldprice" disabled/>
+            
+            </div>
+        </ng-container>
+
+        <div class="form-group"> 
+            <label for="unit_price" > Enter Updated Price </label>
+            <input type="number"  class="form-control" name="unit_price" #unit_price />
+       </div>
+
+        
+
+    <input type="button" class="btn btn-success" value="Insert" (click)="updateprice(unit_price.value)"/> 
+
+

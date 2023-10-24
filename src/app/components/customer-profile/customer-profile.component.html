@@ -1,0 +1,175 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/customer" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/customer">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" *ngIf="login" id="welcome">
+          <h3>Welcome {{currentcustomer.first_nm}} !!!</h3>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto" id="out">
+        <li class="nav-item">
+          <a class="nav-link" href="/orderhistory" >Order History</a>
+        </li>
+        <li class="nav-item" *ngIf="login">
+          <a class="nav-link" href="/cart">cart</a>
+        </li>
+        <li class="nav-item" *ngIf="login">
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <table class="table" style="border-collapse: collapse;margin-left: 40px;">
+    <tr>
+        <td>Customer ID:</td>
+        <td>{{currentcustomer.customer_id}}</td>
+    </tr>
+    <tr>
+        <td>First Name:</td>
+        <td>{{currentcustomer.first_nm| uppercase}}</td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>{{currentcustomer.last_nm| uppercase}}</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{currentcustomer.email}}</td>
+    </tr>
+    <tr>
+        <td>Contact:</td>
+        <td>{{currentcustomer.contact}}</td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td>{{currentcustomer.address}}</td>
+    </tr>
+ </table>
+ <button style="background-color: lightcoral;border-radius: 5px;color: white;margin-left: 40px;" (click)=set()>Update Profile</button> 
+  
+
+
+ <form [formGroup]="profileForm" (ngSubmit)="update()"  *ngIf="flag" style="margin-left: 50px;">
+  <div class="form-group row" >
+      <div class="col-sm-10">
+        <label for="fname">First Name:<span class="require">*</span></label>
+        <input type="text" name="fname" id="fname" class="form-control" [(ngModel)]="currentcustomer.first_nm" formControlName="fname" [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"/>
+        <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
+          <div *ngIf="f.fname.errors.required" style="color:red;">First Name is required </div>
+        </div>
+      </div>
+  </div> 
+  <div class="form-group row" >
+      <div class="col-sm-10">
+        <label for="lname">Last Name:<span class="require">*</span></label>
+        <input type="text" name="lname" id="lname" class="form-control" [(ngModel)]="currentcustomer.last_nm" formControlName="lname" [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"/>
+        <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
+          <div *ngIf="f.lname.errors.required" style="color:red;">Last Name is required </div>
+        </div>
+      </div>
+  </div>  
+              
+  <div class="form-group row">
+      <div class="col-sm-10">
+        <label for="contact">Contact:<span class="require">*</span></label>
+        <input type="number" name="contact" id="contact" class="form-control" [(ngModel)]="currentcustomer.contact" formControlName="contact" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"/>
+      
+        <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+          <div *ngIf="f.contact.errors.required">Contact is required</div>
+          <div *ngIf="f.contact.errors.pattern" style="color:red;">10 Digit Numbers</div>
+        </div>
+      </div>
+  </div>  
+
+  <div class="form-group row" >  
+      <div class="col-sm-10">
+        <label for="email">Email:<span class="require">*</span></label>
+        <input type="email" name="email" id="email" class="form-control" [(ngModel)]="currentcustomer.email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+      
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email" style="color:red;">Please provide valid Email</div>
+        </div>
+      
+      </div>
+  </div>
+     
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <label for="address">Address:<span class="require">*</span></label>
+      <input type="text" name="address" id="address" class="form-control" [(ngModel)]="currentcustomer.address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+    
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+        <div *ngIf="f.address.errors.required" style="color:red;">Address is required</div>
+      </div>
+    </div>
+  </div>           
+
+   <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" class="btn btn-success">Submit</button>
+      </div>   
+   </div>      
+</form> 
+
+<!-- <form #f="ngForm" (submit)="f.valid && update()" *ngIf="flag" style="margin-left: 40px;" >
+  
+      <div class="form-group">
+          <label>Customer First Name:</label>
+          <input type="text" name="fnm" #fnm="ngModel" [(ngModel)]="currentcustomer.first_nm" class="form-control" required/>
+          <div *ngIf="f.submitted && fnm.invalid">
+              <div *ngIf="fnm.errors.required">
+                  <span style="color: red">compulasry</span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Customer Last Name:</label>
+          <input type="text" name="lnm" #lnm="ngModel" [(ngModel)]="currentcustomer.last_nm" class="form-control" required/>
+          <div *ngIf="f.submitted && lnm.invalid">
+              <div *ngIf="lnm.errors.required">
+                  <span style="color: red">compulsory !!!</span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" #email="ngModel" [(ngModel)]="currentcustomer.email" class="form-control" required/>
+          <div *ngIf="f.submitted && email.invalid">
+              <div *ngIf="email.errors.required">
+                  <span style="color: red">compulsory !!!</span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label>Contact</label>
+        <input type="number" name="con" #con="ngModel" [(ngModel)]="currentcustomer.contact" class="form-control" required/>
+        <div *ngIf="f.submitted && con.invalid">
+            <div *ngIf="con.errors.required">
+                <span style="color: red">compulsory !!!</span>
+            </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" name="add" #add="ngModel" [(ngModel)]="currentcustomer.address" class="form-control" required/>
+        <div *ngIf="f.submitted && add.invalid">
+            <div *ngIf="add.errors.required">
+                <span style="color: red">compulsory !!!</span>
+            </div>
+        </div>
+      </div>
+          <div class="form-group">
+          <br/>
+          <input type="submit" value="Update" class="btn btn-success" />
+          </div>
+</form> -->

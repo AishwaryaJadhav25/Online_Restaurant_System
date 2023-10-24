@@ -1,0 +1,18 @@
+#welcome
+{
+    margin-left: 250px;
+}
+#out
+{
+    margin-left: 400px;
+  
+}
+ngb-rating {
+    font-size: 30px;
+    border: white;
+    color: gold;
+}
+
+ngb-rating:focus {
+    outline: 0px;
+}

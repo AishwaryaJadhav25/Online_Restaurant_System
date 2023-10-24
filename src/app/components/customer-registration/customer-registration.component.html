@@ -1,0 +1,107 @@
+<div class="container-fluid" >
+    <div class="row" style="background-color:rgb(156, 156, 238) ;" >
+    <div class="col-sm">
+        <p style="font-size:80px;color: white;font-family:'Times New Roman', Times, serif, 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-weight:bold;text-align: center;">Welcome To Taste Ride </p>
+    </div>
+    </div>
+    <div class="row" style="background-color:rgb(156, 156, 238) ;" >
+        <div class="col-sm">
+            <h3 style="font-size: xx-large;color: white;font-style: italic;font-family:'Times New Roman';font-weight: bolder;text-align: center;">For People Who Love To Eat</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="background-color:rgb(156, 156, 238) ;">
+    <div class="row">
+        <div class="col-sm" style="padding-top: 20px;">
+            <div><img src="assets/loginhere.jpg" style="padding-bottom: 40px;"></div>
+        </div>
+        <div class="col-sm" style="padding-top: 10px;">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group row" >
+                    <div class="col-sm-10">
+                      <label for="fname">First Name:<span class="require">*</span></label>
+                      <input type="text" name="fname" id="fname" class="form-control" placeholder="Enter first name" formControlName="fname" [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"/>
+                      <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
+                        <div *ngIf="f.fname.errors.required" style="color:red;">First Name is required </div>
+                      </div>
+                    </div>
+                </div> 
+                <div class="form-group row" >
+                    <div class="col-sm-10">
+                      <label for="lname">Last Name:<span class="require">*</span></label>
+                      <input type="text" name="lname" id="lname" class="form-control" placeholder="Enter last name" formControlName="lname" [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"/>
+                      <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lname.errors.required" style="color:red;">Last Name is required </div>
+                      </div>
+                    </div>
+                </div>  
+                            
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                      <label for="contact">Contact:<span class="require">*</span></label>
+                      <input type="number" name="contact" id="contact" class="form-control" placeholder="Enter Contact" formControlName="contact" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"/>
+                    
+                      <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                        <div *ngIf="f.contact.errors.required">Contact is required</div>
+                        <div *ngIf="f.contact.errors.pattern" style="color:red;">10 Digit Numbers</div>
+                      </div>
+                    </div>
+                </div>  
+
+                <div class="form-group row" >  
+                    <div class="col-sm-10">
+                      <label for="email">Email:<span class="require">*</span></label>
+                      <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                    
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email" style="color:red;">Please provide valid Email</div>
+                      </div>
+                    
+                    </div>
+                </div>
+                   
+                <div class="form-group row" >
+                    <div class="col-sm-10">
+                      <label for="password">Password:<span class="require">*</span></label>
+                      <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                    
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                    </div>
+                </div>
+          
+  
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <label for="address">Address:<span class="require">*</span></label>
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Enter address with pincode" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+                  
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                      <div *ngIf="f.address.errors.required" style="color:red;">Address is required</div>
+                    </div>
+                  </div>
+                </div>           
+  
+                 <div class="form-group row">
+                    <div class="col-sm-10">
+                      <button type="submit" class="btn btn-primary" class="btn btn-success">Submit</button>
+                      <button type="reset" style="margin-left: 10px;" class="btn btn-primary" (click)="onReset()">Reset</button>
+                      <a href="/customer" style="margin-left: 10px;color:black">Back</a>
+                    </div>   
+                 </div>      
+            </form>
+
+            <div *ngIf="res">
+                <h3>Sucessfully registered!!!</h3>
+            </div>
+       </div>
+    </div>
+    <div class="row">
+    <div class="col-sm">
+        <div style="background-color:rgb(156, 156, 238) ;color: white;">Copyright © Taste Ride Pvt. Ltd. | All Rights Reserved</div>
+    </div>
+    </div>
+</div>

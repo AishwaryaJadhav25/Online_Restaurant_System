@@ -1,0 +1,46 @@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/customer" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" (click)="goto()" href="{{url}}" >Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" id="welcome">
+            <h3>Welcome {{currentcustomer.first_nm}} !!!</h3>
+            </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="out">
+            <a class="nav-link" href="/profile" >Profile</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/orderhistory?id={{id}}" >Order History</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/customer" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+        </div>
+  </nav>
+  <div *ngIf="empty" style="text-align: center;"><img src="assets/emptycart.jpg"></div>
+
+
+    <div *ngIf="!empty" style="background-color:rgb(156, 156, 238);height: 900px;">  
+        <div class="container-fluid">
+            <div class="row" style="margin-left:10px;">    
+                <div class="col-sm" *ngFor="let rs of allcart;let i=index">
+                    <div><img id="ct" style="height: 200px;width: 200px;margin-top: 10px;" src="assets/menu/{{rs?.product?.product_id}}.jpg"></div>
+                    <div ><b>Product Name: </b> {{rs?.product?.product_nm}}</div>
+                    <div ><b>Price: </b> {{rs?.unit_price}}</div>
+                    <div><input type="number" step="1" placeholder="{{allqnt[i]}}" min="1" #q="ngModel" [(ngModel)]="allqnt[i]" name="quantity"
+                    class="quantity-field" style="width:50px;margin-right: 10px;margin-left: 3px;"/></div>
+                    <div><button style="background-color: lightcoral;border-radius: 5px;color: white;margin-top: 6px;margin-bottom: 6px;" (click)="remove(i)">Remove</button> </div>
+                </div>       
+            </div>       
+        </div>
+        <button style="background-color: lightcoral;border-radius: 5px;color: white;margin-top: 6px;margin-left: 20px;" (click)="placeorder()">Place Order</button> 
+    </div>

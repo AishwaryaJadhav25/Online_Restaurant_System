@@ -1,0 +1,52 @@
+<br/>
+<br/>
+<h2>Insert new product</h2>
+
+
+<h2>Register a new Order Relation manager</h2>
+
+<div class="form-group"> 
+    <label for="pnm" > Enter Product name </label>
+    <input type="text"  class="form-control" name="pnm" #pnm />
+    <!-- <div *ngIf="f.submitted && fnm.invalid">
+    <div *ngIf="pnm.errors.required">
+        <span style="color: red">Ordermanager firstname is compulsory</span>
+    </div>
+</div> -->
+</div>
+
+<div class="form-group"> 
+    <label for="cat" > Enter Product Category </label>
+    <input type="text"  class="form-control" name="cat" #cat />
+    <!-- <div *ngIf="f.submitted && lnm.invalid">
+        <div *ngIf="cat.errors.required">
+            <span style="color: red">Ordermanager lastname is compulsory</span>
+        </div>
+    </div> -->
+</div>
+
+<div class="form-group"> 
+    <label for="scat" > Enter Product SubCategory </label>
+    <input type="text"  class="form-control" name="scat" #scat />
+    <!-- <div *ngIf="f.submitted && pwd.invalid">
+        <div *ngIf="scat.errors.required">
+            <span style="color: red">Ordermanager password is compulsory</span>
+        </div>
+    </div> -->
+</div>
+
+<div class="form-group"> 
+    <label for="desc" > Product Description </label>
+    <input type="text"  class="form-control" name="desc"  #desc />
+    <!-- <div *ngIf="f.submitted && desc.invalid">
+        <div *ngIf="desc.errors.required">
+            <span style="color: red">Ordermanager email is compulsory</span>
+        </div>
+    </div> -->
+</div>
+
+<div class="form-group">
+    <br/>
+    <input type="submit" value="Register" class="btn btn-primary" (click)="insertProduct(pnm.value,cat.value,scat.value,desc.value)" />
+    <input type="reset" value="Refresh" class="btn btn-primary" (click)="reset()" style="margin-left:20px"/>
+</div>

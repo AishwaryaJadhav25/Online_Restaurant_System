@@ -1,0 +1,25 @@
+@media all and (min-width: 768px) {
+    tr {
+        td {
+            vertical-align: middle !important;
+        }
+        span {
+            &:not([class]) {
+                padding: 1rem 1rem;
+            }
+        }
+    }
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+#welcome {
+    margin-left: 300px;
+}
+
+#out {
+    margin-left: 300px;
+}

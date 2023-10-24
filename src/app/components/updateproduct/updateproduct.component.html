@@ -1,0 +1,51 @@
+
+        <ng-container *ngFor="let emp of updateproduct">
+            <div class="form-group" *ngIf="emp.r_product_id==a1"> 
+                <label for="pid" > Product Id </label>
+                <input type="text"  class="form-control" id="pid" value="{{emp.product.product_id}}" name="pid" disabled/>
+           </div>
+        </ng-container>
+    
+        <ng-container *ngFor="let emp of updateproduct">
+    
+        <div class="form-group" *ngIf="emp.r_product_id==a1"> 
+            <label for="pname" > Product Name </label>
+            <input type="text"  class="form-control" id="pname"  value="{{emp.product.product_nm}}" name="pname" disabled/>
+        
+        </div>
+        </ng-container>
+    
+        <ng-container *ngFor="let emp of updateproduct">
+            <div class="form-group" *ngIf="emp.r_product_id==a1"> 
+                <label for="pcat" > Product Category </label>
+                <input type="text"  class="form-control" id="pcat"  value="{{emp.product.category}}" name="pcat" disabled/>
+            
+            </div>
+        </ng-container>
+    
+        <ng-container *ngFor="let emp of updateproduct">
+            <div class="form-group" *ngIf="emp.r_product_id==a1"> 
+                <label for="scat" > Product SubCategory </label>
+                <input type="text"  class="form-control" id="scat"  value="{{emp.product.subcategory}}" name="scat" disabled/>
+            
+            </div>
+        </ng-container>
+
+        
+            <div class="form-group"> 
+                <label for="unit_price" > Enter Price </label>
+                <input type="number"  class="form-control" name="unit_price" #unit_price />
+           </div>
+        
+    
+        <ng-container *ngFor="let emp of updateproduct">
+            <div class="form-group" *ngIf="emp.r_product_id==a1"> 
+                <label for="pdesc" > Product description </label>
+                <input type="text"  class="form-control" id="pdesc" value="{{emp.product.product_desc}}" name="pdesc" disabled/>
+            
+            </div>
+        </ng-container>
+     
+
+    <input type="button" class="btn btn-success" value="Insert" (click)="insertProduct(unit_price.value)"/> 
+

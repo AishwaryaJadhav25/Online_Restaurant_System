@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/customer">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" *ngIf="!login">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="!login">
+          <a class="nav-link" href="/customerlogin">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/vegproducts?id={{id}}" >Veg</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/nonvegproducts?id={{id}}">Non-Veg</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/products?id={{id}}" >all</a>
+        </li>
+        <li class="nav-item" *ngIf="login" id="welcome">
+          <h3>Welcome {{currentcustomer.first_nm}} !!!</h3>
+        </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" *ngIf="login" id="out">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item"  *ngIf="login">
+            <a class="nav-link" href="/orderhistory" >Order History</a>
+          </li>
+          <li class="nav-item" *ngIf="login">
+            <a class="nav-link" href="/cart?id={{id}}">cart</a>
+          </li>
+          <li class="nav-item" *ngIf="login">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+    </div>
+  </nav> 
+
+    <div class="container-fluid" >
+          <!-- <div class="row" style="background-color:rgb(156, 156, 238) ;text-align: center;">
+            <h3>Welcome to {{vegproducts[0].restaurant.restaurant_nm}}</h3>
+          </div> -->
+          <div class="row" style="background-color:rgb(156, 156, 238) ;" >
+          <div class="col-sm" *ngFor="let rs of vegproducts;let i=index">
+                  <div><img src="assets/menu/{{rs.product.product_id}}.jpg"></div>
+                  <div>
+                    <div>{{rs.product.product_nm}}</div>
+                    <div><b>Subcategory: </b>{{rs.product.subcategory}}</div>
+                    <div><b>Description: </b>{{rs.product.product_desc}}</div>
+                    <div><b>Price: </b>{{rs.unit_price}}</div>
+                    <div class="input-group" style="margin-bottom: 10px;">
+                    <b>Quantity:</b><input type="number" step="1" min="1" max="" placeholder="1" #quantity name="quantity" class="quantity-field" style="width:50px;margin-right: 10px;margin-left: 3px;"/>
+                    <button style="background-color: lightcoral;border-radius: 5px;color: white;" (click)=addItem(rs,quantity.value)>Add To Cart</button> 
+                  </div>
+                </div>
+          </div>
+          </div>
+    </div>
+
+
+

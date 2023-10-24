@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/customer">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" *ngIf="!login">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="!login">
+          <a class="nav-link" href="/customerlogin">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="login" id="welcome">
+          <h3>Welcome {{currentcustomer.first_nm}} !!!</h3>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngIf="login" id="out">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+        <li class="nav-item" *ngIf="login" >
+          <a class="nav-link" href="/orderhistory" >Order History</a>
+        </li>
+        <li class="nav-item" *ngIf="login">
+          <a class="nav-link" href="/cart?id={{id}}">cart</a>
+        </li>
+        <li class="nav-item" *ngIf="login">
+          <a class="nav-link" href="/customer" (click)=logout() >Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container-fluid" style="background-color:rgb(156, 156, 238);height: 800px;"  >
+    <div class="row" >
+      <div class="col-sm" *ngFor="let rs of restaurants;let i=index">
+        <div><a href="/products?id={{rs.restaurant_id}}"><img src="assets/restaurant/{{rs.restaurant_id}}.jpg"></a></div>
+        <div>{{rs.restaurant_nm}}</div>
+        <div>{{rs.address}}</div>
+        <div><ngb-rating max="5" [rate]="onRestaurantChange(rs.restaurant_nm)" [readonly]="true"></ngb-rating></div>
+      </div>
+    </div>
+  </div>

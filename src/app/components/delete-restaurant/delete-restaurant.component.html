@@ -1,0 +1,31 @@
+<div class="container-fluid" style="background-color:rgb(8, 8, 201);">
+    <h1>Welcome To Taste Ride</h1>
+    
+    <a href="/landing">Logout</a>
+  </div>
+
+<div class="card">
+    <div id="table" class="table-editable">
+          <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center"> Name</th>  
+                        <th class="text-center"> Address</th>
+                        <th class="text-center">Registry Date</th>
+                        <th class="text-center">Validity Date</th>
+                        <th class="text-center">GSTIN</th>
+
+                </tr>
+
+                <tr *ngFor="let restaurant of rest;let i=index">
+                        <td>{{restaurant.restaurant_id}}</td>
+                        <td>{{restaurant.restaurant_nm}}</td>
+                        <td>{{restaurant.address}}</td>
+                        <td>{{restaurant.reg_date}}</td>
+                        <td>{{restaurant.validity_date}}</td>
+                        <td>{{restaurant.gstin}}</td>
+                        <td><a href="#" (click)="delete(restaurant)" routerLink="/view">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+  </div>

@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="welcome">
+                <h3>Welcome {{currentcustomer?.first_nm}} !!!</h3>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Feedbacks
+        <input type="text" [(ngModel)]="searchString" placeholder="Search" />
+        <button class="btn btn-success" (click)="generateReport()">Generate Report</button>
+    </h3>
+    <div class=" text-center ">
+        Restaurant:
+        <span class="table-remove">
+            <select [ngModel]="currentRestaurant" (ngModelChange)="onRestaurantChange($event)">
+                <option *ngFor="let restaurant of restaurants" [value]="restaurant.restaurant_nm" onclick="">
+                    {{restaurant.restaurant_nm}}
+                </option>
+            </select>
+        </span> Overall Rating : {{overallRating?.toFixed(2)}}
+    </div>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">Feedback Id</th>
+                    <th class="text-center">Customer</th>
+                    <!-- <th class="text-center">Restaurant</th> -->
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Order Id</th>
+                    <th class="text-center">rating</th>
+                </tr>
+                <tr *ngFor="let feedback of filteredFeedbacks | searchCR:searchString; let id = index">
+                    <td>
+                        <span>{{feedback?.feedback_id}}</span>
+                    </td>
+                    <td>
+                        <span>{{feedback?.customer?.first_nm}} {{feedback?.customer?.last_nm}}</span>
+                    </td>
+                    <!-- <td>
+                        <span>{{feedback?.restaurant?.restaurant_nm}}</span>
+                    </td> -->
+                    <td>
+                        <span>{{feedback?.date | date:'dd/MM/yyyy hh:mm:ss a'}}</span>
+                    </td>
+                    <td>
+                        <span>{{feedback?.order?.order_id}}</span>
+                    </td>
+                    <td>
+                        <span>{{feedback?.rating}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

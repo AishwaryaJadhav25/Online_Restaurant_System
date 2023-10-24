@@ -1,0 +1,25 @@
+
+<table class="table table-dark" border="1" style="border-collapse: collapse" *ngIf="restaurantproduct.length > 0">
+    <tr>
+        <th> Product id </th>
+        <th> Product Name </th>
+        <th> Category </th>
+        <th> Subcategory </th>
+        <th> Product Description </th>
+        <th> Rs. </th>
+    </tr>
+  
+    
+  <ng-container *ngFor="let emp of restaurantproduct;let i=index">
+    <tr *ngIf="emp.restaurant.restaurant_id==a1">
+     <td>{{emp.product.product_id}}</td>
+     <td>{{emp.product.product_nm}}</td>
+     <td>{{emp.product.category}}</td>
+     <td>{{emp.product.subcategory}}</td>
+     <td>{{emp.product.product_desc}}</td>
+     <td>{{emp.unit_price}}</td>
+     
+     <td> <a href="operation/restaurantproducts" (click)="deleteOrder(emp.r_product_id)"> delete </a></td>
+     <td> <button (click)="onSelect(emp.r_product_id)"> Update price </button></td>
+</tr>
+</ng-container>

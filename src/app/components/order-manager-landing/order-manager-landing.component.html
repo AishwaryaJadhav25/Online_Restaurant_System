@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="welcome">
+                <h3>Welcome {{currentcustomer?.first_nm}} !!!</h3>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order Details
+        <input type="text" [(ngModel)]="searchString" placeholder="Search" />
+        <button class="btn btn-success" (click)="generateReport()">Generate Report</button>
+    </h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">Order Id</th>
+                    <th class="text-center">Customer</th>
+                    <th class="text-center">Restaurant</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Amount</th>
+                    <th class="text-center">Payment Mode</th>
+                    <th class="text-center">Payment Status</th>
+                    <th class="text-center">Status</th>
+                </tr>
+                <tr *ngFor="let order of orders | searchOrder:searchString; let id = index">
+                    <td>
+                        <span>{{order?.order_id}}</span>
+                    </td>
+                    <td>
+                        <span>{{order?.customer?.first_nm}} {{order?.customer?.last_nm}}</span>
+                    </td>
+                    <td>
+                        <span>{{order?.restaurant?.restaurant_nm}}</span>
+                    </td>
+                    <td>
+                        <span>{{order?.date | date:'dd/MM/yyyy hh:mm:ss a'}}</span>
+                    </td>
+                    <td>
+                        <span>{{order?.total_amount}}</span>
+                    </td>
+                    <td>
+                        <span>{{order?.payment_mode}}</span>
+                    </td>
+                    <td>
+                        <span class="table-remove">
+                            <select [ngModel]="order.payment_status" (ngModelChange)="onPaymentStatus($event, order)" [disabled]="order.payment_status==='completed'">
+                                <option *ngFor="let paymentStatus of paymentStatuses"
+                                    [value]="paymentStatus.status_name">
+                                    {{paymentStatus.status_name}}
+                                </option>
+                            </select>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="table-remove">
+                            <select [ngModel]="order.status.status_id" (ngModelChange)="updateStatus($event, order)"  [disabled]="order.status.status_name==='delivered'">
+                                <option *ngFor="let status of statuses" [value]="status.status_id">
+                                    {{status.status_name}}
+                                </option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

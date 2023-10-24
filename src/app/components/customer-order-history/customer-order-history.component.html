@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/customer" style="font-size:larger;font-weight: 500;">Taste Ride</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ul}}" (click)="url()">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" id="welcome">
+                <h3>Welcome {{currentcustomer.first_nm}} !!!</h3>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" id="out">
+                <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cart">cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div *ngIf="!result">
+    <h3>No order History</h3>
+</div>
+<table border=1 class="table" style="border-collapse:collapse" *ngIf="result">
+    <tr>
+        <th>Order Id</th>
+        <th>Date</th>
+        <th>restaurant Name</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Rating</th>
+    </tr>
+    <tr *ngFor="let or of orders;let i=index">
+        <td>{{or.order_id}}</td>
+        <td>{{or.date | date}}</td>
+        <td>{{or.restaurant.restaurant_nm}}</td>
+        <td>{{or.status.status_name | uppercase}}</td>
+        <td>{{or.total_amount | currency:'INR'}}</td>
+        <td>
+            <ngb-rating max="5" [rate]="onRestaurantChange(or.restaurant.restaurant_nm, or.order_id)" (rateChange)="onRateChange($event,or)" [readonly]="onRestaurantChange(or.restaurant.restaurant_nm, or.order_id)>0"></ngb-rating>
+        </td>
+    </tr>
+</table>
+<br />

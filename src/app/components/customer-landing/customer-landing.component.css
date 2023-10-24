@@ -1,0 +1,26 @@
+img {
+    padding: 20px;
+    height: 300px;
+    width: 400px;
+}
+
+#welcome
+{
+    margin-left: 300px
+}
+#out
+{
+    margin-left: 450px;
+    text-decoration: solid;
+    
+}
+
+ngb-rating {
+    font-size: 30px;
+    border: white;
+    color: gold;
+}
+
+ngb-rating:focus {
+    outline: 0px;
+}

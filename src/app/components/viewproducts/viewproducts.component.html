@@ -1,0 +1,38 @@
+
+<table class="table table-dark" border="1" style="border-collapse: collapse" *ngIf="viewproduct.length > 0">
+    <tr>
+        <th> Product id </th>
+        <th> Product Name </th>
+        <th> Category </th>
+        <th> Subcategory </th>
+        <th> Product Description </th>
+        
+    </tr>
+  
+    
+  <ng-container *ngFor="let emp of viewproduct;let i=index">
+    <tr *ngIf="emp.restaurant.restaurant_id!=a1">
+     <td>{{emp.product.product_id}}</td>
+     <td>{{emp.product.product_nm}}</td>
+     <td>{{emp.product.category}}</td>
+     <td>{{emp.product.subcategory}}</td>
+     <td>{{emp.product.product_desc}}</td>
+     
+
+     
+     <!--<td> <button (click)="onSelect(emp.r_product_id)"> add to your restaurant </button></td>-->
+     <td> <button (click)="onSelect(emp.r_product_id,emp.product.product_id)"> add to your restaurant </button>
+     </tr>
+    </ng-container>
+
+    
+    </table>
+    <br/>
+    <br/>
+    <br/>
+    <!--<a href="/product"><h4>Insert product</h4></a>-->
+    <!--<br/>
+    <br/>
+    <br/>-->
+
+    

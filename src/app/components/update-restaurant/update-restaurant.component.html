@@ -1,0 +1,108 @@
+<div style="margin-left: 20px;">
+<div class="container-fluid" style="background-color:rgb(8, 8, 201);">
+    <h1>Welcome To Taste Ride</h1>
+    
+    <a href="/landing">Logout</a>
+  </div>
+  
+  
+  <div class="card">
+      <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                  <tr>
+                          <th class="text-center">Id</th>
+                          <th class="text-center"> Name</th>  
+                          <th class="text-center"> Address</th>
+                          <th class="text-center">Registry Date</th>
+                          <th class="text-center">Validity Date</th>
+                          <th class="text-center">GSTIN</th>
+  
+                  </tr>
+  
+                  <tr *ngFor="let restaurant of rest;let i=index">
+                          <td>{{restaurant.restaurant_id}}</td>
+                          <td>{{restaurant.restaurant_nm}}</td>
+                          <td>{{restaurant.address}}</td>
+                          <td>{{restaurant.reg_date}}</td>
+                          <td>{{restaurant.validity_date}}</td>
+                          <td>{{restaurant.gstin}}</td>
+                          <td><button class=" btn btn-primary" routerlink="/restaurantupdate" (click)="change(i)">UPDATE</button></td>
+                  </tr>
+              </table>
+          </div>
+    </div>
+
+<div *ngIf="show">
+    <h2>Please Enter The Details In Form To Update</h2>
+
+    
+    <form #f="ngForm" (submit)="f.valid && Update()">
+    <div class="form-group">
+        <label>Restaurant Id:</label>
+        <input type= "number" name="restaurant_id" #rid="ngModel" [(ngModel)]="res.restaurant_id"   class="form-control"   required />
+        <div *ngIf="f.submitted && rid.invalid">
+            <div *ngIf="rid.errors.required">
+            <span style="color: red">Restaurnt Id is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        <label>Restaurant Name: </label>
+            <input type= "text" name="restaurant_nm" #rnm="ngModel" [(ngModel)]="res.restaurant_nm" class="form-control"  required/>
+            <div *ngIf="f.submitted && rnm.invalid">
+                <div *ngIf="rnm.errors.required">
+                    <span style="color: red">Restaurnt Name is compulsory</span>
+                </div>
+            </div>
+    </div>
+    
+    <div class="form-group">
+        <label>Restaurant Address:</label>
+            <input type= "text" name="address"  #add="ngModel" [(ngModel)]="res.address" class="form-control"  required/>
+            <div *ngIf="f.submitted && add.invalid">
+                <div *ngIf="add.errors.required">
+                    <span style="color: red">Address is compulsory</span>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="form-group">
+        <label> Registration Date:</label>
+        <input type="date" name="reg_date"  #rd1="ngModel" [(ngModel)]="res.reg_date"  class="form-control"  disabled/>
+    
+    </div>
+
+
+    <div class="form-group">
+        <label>Validity Date:</label>
+        <input type="date" name="validity_date" #vd="ngModel"  [(ngModel)]="res.validity_date"  class="form-control" required/>
+        <div *ngIf="f.submitted && vd.invalid">
+            <div *ngIf="vd.errors.required">
+                <span style="color: red">Validity Date is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label> GSTIN :</label>
+        <input type= "text" name="GSTIN" #gst="ngModel" [(ngModel)]="res.gstin"  class="form-control"  required/><br/>
+        <div *ngIf="f.submitted && gst.invalid">
+            <div *ngIf="gst.errors.required">
+                <span style="color: red"> GSTIN is compulsory</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!--<div class="panel-footer">-->
+
+    <div>
+        <button type="submit" class=" btn btn-primary">UPDATE</button>
+    </div>
+    </form>
+</div>
+</div>

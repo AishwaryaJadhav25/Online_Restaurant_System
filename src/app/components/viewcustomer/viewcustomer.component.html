@@ -1,0 +1,24 @@
+
+<table class="table table-dark" border="1" style="border-collapse: collapse" *ngIf="viewcustomer.length > 0">
+    <tr>
+        <th> Customer id </th>
+        <th> First name </th>
+        <th> Last name </th>
+        <th> Contact </th>
+        <th> Address </th>
+          
+    </tr>
+    
+    <tr *ngFor="let pro of viewcustomer" >
+         <td>{{pro.customer_id}}</td>
+         <td>{{pro.first_nm | uppercase}}</td>
+         <td>{{pro.last_nm }}</td>    
+         <td>{{pro.contact}}</td>
+         <td>{{pro.address}}</td>
+         
+         
+    </tr>
+
+</table>   
+<br/>
+<br/>

@@ -1,0 +1,153 @@
+
+<h2>Details of Customer Relation managers</h2>
+
+
+<table class="table table-dark" border="1" style="border-collapse: collapse" *ngIf="customer.length > 0">
+    <tr>
+        <!--<th> Authority id </th>-->
+        <th> First Name </th>
+        <th> Last Name </th>
+        <!--<th> Role id</th>-->
+        <th> Email</th>
+        <th> Contact number </th>
+    </tr>
+    <ng-container *ngFor="let emp of customer;let i=index">
+        <tr>
+            <!--<td>{{emp.authority_id}}</td>-->
+            <td>{{emp.first_nm | uppercase}}</td>
+            <td>{{emp.last_nm | uppercase}}</td>
+            <!--<td>{{emp.role.role_id}}</td>-->
+            <td>{{emp.email}}</td>
+            <td>{{emp.contact_no}}</td>
+            <td> <a href="/operation/crmanager" (click)="deleteCustomer(emp.authority_id)"> delete </a></td>
+        </tr>
+    </ng-container>
+</table>
+<br />
+<br />
+
+
+<h2>Register a new Order Relation manager</h2>
+<form #f="ngForm" (submit)="f.valid && insertCustomer()" *ngIf="flag">
+<div class="form-group"> 
+    <label for="fnm" > Enter firstName </label>
+    <input type="text"  class="form-control" name="fnm" #fnm="ngModel" [(ngModel)]="b1.first_nm" required />
+    <div *ngIf="f.submitted && fnm.invalid">
+    <div *ngIf="fnm.errors.required">
+        <span style="color: red">Firstname is compulsory</span>
+    </div>
+</div>
+</div>
+
+<div class="form-group"> 
+    <label for="lnm" > Enter LastName </label>
+    <input type="text"  class="form-control" name="lnm" #lnm="ngModel" [(ngModel)]="b1.last_nm" required/>
+    <div *ngIf="f.submitted && lnm.invalid">
+        <div *ngIf="lnm.errors.required">
+            <span style="color: red">Lastname is compulsory</span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group"> 
+    <label for="pwd" > Enter Password </label>
+    <input type="password"  class="form-control" name="pwd" #pwd="ngModel" [(ngModel)]="b1.password" required/>
+    <div *ngIf="f.submitted && pwd.invalid">
+        <div *ngIf="pwd.errors.required">
+            <span style="color: red">Password is compulsory</span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group"> 
+    <label for="mail" > Enter mail </label>
+    <input type="text"  class="form-control" name="mail" mail #mail="ngModel" [(ngModel)]="b1.email" required/>
+    <div *ngIf="f.submitted && mail.invalid">
+        <div *ngIf="mail.errors.required">
+            <span style="color: red">Email is compulsory</span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="form-group"> 
+    <label for="cno" > Enter Contact number </label>
+    <input type="string"  class="form-control" name="cno" #cno="ngModel" [(ngModel)]="b1.contact_no" required/>
+    <div *ngIf="f.submitted && cno.invalid">
+        <div *ngIf="cno.errors.required">
+            <span style="color: red">Contact is compulsory</span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <br/>
+    <input type="submit" value="Insert" class="btn btn-success" />
+    </div>
+
+</form>
+
+<!--<h2>Register a new Customer Relation manager</h2>
+
+<form #f="ngForm">
+    <div class="form-group">
+        <label for="fnm"> Enter firstName </label>
+        <input type="text" class="form-control" name="fnm" #fnm />
+        <div *ngIf="f.submitted && fnm.invalid">
+            <div *ngIf="fnm.errors.required">
+                <span style="color: red">Ordermanager firstname is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lnm"> Enter LastName </label>
+        <input type="text" class="form-control" name="lnm" #lnm />
+        <div *ngIf="f.submitted && lnm.invalid">
+            <div *ngIf="lnm.errors.required">
+                <span style="color: red">Ordermanager lastname is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="pwd"> Enter Password </label>
+        <input type="password" class="form-control" name="pwd" #pwd />
+        <div *ngIf="f.submitted && pwd.invalid">
+            <div *ngIf="pwd.errors.required">
+                <span style="color: red">Ordermanager password is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="mail"> Enter mail </label>
+        <input type="text" class="form-control" name="mail" mail #mail />
+        <div *ngIf="f.submitted && mail.invalid">
+            <div *ngIf="mail.errors.required">
+                <span style="color: red">Ordermanager email is compulsory</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cno"> Enter Contact number </label>
+        <input type="string" class="form-control" name="cno" #cno />
+        <div *ngIf="f.submitted && cno.invalid">
+            <div *ngIf="cno.errors.required">
+                <span style="color: red">Ordermanager contact is compulsory</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <br />
+        <input type="submit" value="Register" class="btn btn-primary"
+            (click)="insertCustomer(fnm.value,lnm.value,pwd.value,mail.value,cno.value)" />
+        <input type="reset" value="Refresh" class="btn btn-primary" (click)="reset()" style="margin-left:20px" />
+    </div>
+</form>-->
+
+
+
+
+
